@@ -84,6 +84,9 @@ class Config(object):
     MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 3))
     # set to True if you want to log PMs to your PM_LOGGR_BOT_API_ID
     NC_LOG_P_M_S = bool(os.environ.get("NC_LOG_P_M_S", False))
+    SLAP_USERNAME = os.environ.get("SLAP_USERNAME", None)
+    GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN", None)
+    GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME", None)
     # send .get_id in any channel to forward all your NEW PMs to this group
     PM_LOGGR_BOT_API_ID = int(os.environ.get("PM_LOGGR_BOT_API_ID", "-100"))
     # For Databases
