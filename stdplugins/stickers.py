@@ -1,6 +1,6 @@
 """Make / Download Telegram Sticker Packs without installing Third Party applications
 Available Commands:
-.kang [Optional Emoji]
+.kangsticker [Optional Emoji]
 .packinfo
 .getsticker"""
 from telethon import events
@@ -29,7 +29,7 @@ from telethon.tl.types import (
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("kang ?(.*)"))
+@borg.on(admin_cmd("kangsticker ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -37,15 +37,15 @@ async def _(event):
         await event.edit("Reply to a photo to add to my personal sticker pack.")
         return
     reply_message = await event.get_reply_message()
-    sticker_emoji = "😏"
+    sticker_emoji = "🔥"
     input_str = event.pattern_match.group(1)
     if input_str:
         sticker_emoji = input_str
 
     me = borg.me
     userid = event.from_id
-    packname = f"@D347HW15H 's Kang Pack"
-    packshortname = f"Id_148923846"  # format: Uni_Borg_userid
+    packname = f"{userid}'s @UniBorg Pack"
+    packshortname = f"Uni_Borg_{userid}"  # format: Uni_Borg_userid
 
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "@UniBorg_Sticker.png"
@@ -117,7 +117,7 @@ async def _(event):
             await silently_send_message(bot_conv, sticker_emoji)
             await silently_send_message(bot_conv, "/done")
 
-    await event.edit(f"▕╮╭┻┻╮╭┻┻╮╭▕╮╲\n▕╯┃╭╮┃┃╭╮┃╰▕╯╭▏\n▕╭┻┻┻┛┗┻┻┛   ▕  ╰▏\n▕╰━━━┓┈┈┈╭╮▕╭╮▏\n▕╭╮╰┳┳┳┳╯╰╯▕╰╯▏\n▕╰╯┈┗┛┗┛┈╭╮▕╮┈▏\n\n[Sticker looted!](t.me/addstickers/{packshortname})")
+    await event.edit(f"sticker added! Your pack can be found [here](t.me/addstickers/{packshortname})")
 
 
 @borg.on(admin_cmd("packinfo"))
@@ -242,13 +242,16 @@ async def _(event):
 # Helpers
 
 def is_it_animated_sticker(message):
-    if message.media and message.media.document:
-        mime_type = message.media.document.mime_type
-        if "tgsticker" in mime_type:
-            return True
+    try:
+        if message.media and message.media.document:
+            mime_type = message.media.document.mime_type
+            if "tgsticker" in mime_type:
+                return True
+            else:
+                return False
         else:
             return False
-    else:
+    except:
         return False
 
 
