@@ -9,7 +9,7 @@ from telethon.utils import get_input_location
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("whois ?(.*)"))
+@borg.on(admin_cmd(pattern="whois ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -46,17 +46,15 @@ async def _(event):
     except Exception as e:
         dc_id = "Need a Profile Picture to check **this**"
         location = str(e)
-    caption = """Detailed Infos:
-
-ID🔖: <code>{}</code>
-Name🤵: <a href='tg://user?id={}'>{}</a>
-Bio✍️: {}
-Data Centre Number🌏: {}
-Number of Profile Pics🖼: {}
-Restricted🔏: {}
-Verified🌐: {}
-Bot🤖: {}
-Groups in Common👥: {}
+    caption = """ID: <code>{}</code>
+Name: <a href='tg://user?id={}'>{}</a>
+Bio: {}
+DC ID: {}
+Number of PPs: {}
+Restricted: {}
+Verified: {}
+Bot: {}
+Groups in Common: {}
 """.format(
         user_id,
         user_id,

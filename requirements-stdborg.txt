@@ -3,6 +3,7 @@ aiohttp
 aria2p
 beautifulsoup4
 cfscrape
+coffeehouse
 cryptg
 emoji
 googletrans
@@ -24,13 +25,6 @@ telegraph
 urbandict
 wikipedia
 youtube-dl
-git+https://github.com/ahupp/python-magic
 google-api-python-client
 oauth2client
 httplib2
-google_auth_oauthlib
-gsearch>=1.6.0
-PyGithub
-lxml
-git+https://github.com/LonamiWebs/Telethon
-humanize

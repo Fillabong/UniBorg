@@ -4,7 +4,7 @@ import asyncio
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("purge ?(.*)"))
+@borg.on(admin_cmd(pattern="purge ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -24,10 +24,10 @@ async def _(event):
             i = i + 1
             msgs.append(message)
             if len(msgs) == 100:
-                await borg.delete_messages(event.chat_id, msgs)
+                await borg.delete_messages(event.chat_id, msgs, revoke=True)
                 msgs = []
         if len(msgs) <= 100:
-            await borg.delete_messages(event.chat_id, msgs)
+            await borg.delete_messages(event.chat_id, msgs, revoke=True)
             msgs = []
             await event.delete()
         else:
